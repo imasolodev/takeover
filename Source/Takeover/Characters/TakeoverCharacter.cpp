@@ -3,6 +3,7 @@
 #include "Components/CapsuleComponent.h"
 #include "GameFramework/CharacterMovementComponent.h"
 #include "GameFramework/SpringArmComponent.h"
+#include "Takeover/Components/InventoryComponent.h"
 
 ATakeoverCharacter::ATakeoverCharacter()
 {
@@ -29,9 +30,18 @@ ATakeoverCharacter::ATakeoverCharacter()
 	FollowCamera = CreateDefaultSubobject<UCameraComponent>(TEXT("FollowCamera"));
 	FollowCamera->SetupAttachment(CameraBoom, USpringArmComponent::SocketName);
 	FollowCamera->bUsePawnControlRotation = false;
+
+	InventoryComponent = CreateDefaultSubobject<UInventoryComponent>("Inventory Component");
 }
 
 void ATakeoverCharacter::BeginPlay()
 {
 	Super::BeginPlay();
+}
+
+void ATakeoverCharacter::PostInitializeComponents()
+{
+	Super::PostInitializeComponents();
+
+	InventoryComponent->PlayerCharacter = this;
 }
