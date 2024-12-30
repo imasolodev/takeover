@@ -4,6 +4,7 @@
 #include "Components/ActorComponent.h"
 #include "InventoryComponent.generated.h"
 
+class AWeapon;
 class ATakeoverCharacter;
 
 UCLASS(ClassGroup=(Custom), meta=(BlueprintSpawnableComponent))
@@ -23,7 +24,7 @@ private:
 	ATakeoverCharacter* PlayerCharacter = nullptr;
 
 	UPROPERTY(VisibleAnywhere)
-	TMap<FName, TSoftClassPtr<AActor>> WeaponInventory;
+	TMap<FName, TSoftClassPtr<AWeapon>> WeaponInventory;
 
 public:
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
